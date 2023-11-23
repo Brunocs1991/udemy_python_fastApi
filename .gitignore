@@ -219,6 +219,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+famp-secao02/
 
 # Spyder project settings
 .spyderproject
