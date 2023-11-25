@@ -1,6 +1,9 @@
+from typing import Optional
+
 from fastapi import FastAPI
 from fastapi import HTTPException
 from fastapi import Path
+from fastapi import Query
 from fastapi import Response
 from fastapi import status
 
@@ -62,6 +65,14 @@ async def delete_curso(curso_id: int):
         return Response(status_code=status.HTTP_204_NO_CONTENT)
     else:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'Não existe um curso com o id {curso_id}')
+
+
+@app.get("/calculadora")
+async def calculadora(a: int = Query(gt=5), b: int = Query(gt=10), c: Optional[int] = None):
+    soma = a + b
+    if c:
+        soma = soma + c
+    return {"resultado": soma}
 
 
 if __name__ == '__main__':
